@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+  .movie-selected {
+    border: solid blue 2px;
+  }
+
+  .movie-image {
+    cursor: pointer;
+  }
+</style>
+<script>
+  function select(image) {
+    const elements = document.getElementsByClassName("movie-image");
+    for (const element of elements) {
+      element.classList.remove("movie-selected");
+    }
+
+    image.classList.add("movie-selected");
+
+    document.getElementById("movie-selected").value = image.id;
+  }
+
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page-title.battle}"></title>
+</head>
+<body>
+  <div class="battle" th:align="center">
+    <h1 th:text="${battle.description}" />
+    <form action="#" th:action="@{'/app/battles/'+${battle.id} + '/answer'}" th:object="${selected_movie}" method="post">
+      <img class="movie-image" th:id="${battle.left.id}" th:src="@{${battle.left.image}}" onclick="select(this)" width="100" height="180" />
+      VS
+      <img class="movie-image" th:id="${battle.right.id}" th:src="@{${battle.right.image}}" onclick="select(this)" width="100" height="180" /><br />
+      <input id="movie-selected" type="hidden" th:field="*{id}">
+      <input type="submit" th:value="#{action.vote}">
+    </form>
+  </div>
+</body>
+</html>

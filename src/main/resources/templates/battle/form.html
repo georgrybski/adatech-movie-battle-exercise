@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page-title.battle.form}"></title>
+</head>
+<body>
+  <form action="#" th:action="@{/app/battles}" th:object="${player}" method="post" >
+    <select th:field="*{id}">
+      <option th:each="p: ${players}" th:value="${p.id}" th:text="${p.name}" />
+    </select>
+    <input type="submit" th:value="#{action.start}"/>
+  </form>
+</body>
+</html>
