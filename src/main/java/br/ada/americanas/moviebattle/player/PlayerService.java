@@ -37,7 +37,6 @@ public class PlayerService {
     public Player findByIdOrThrow(Long id) {
         Optional<Player> player = repository.findById(id);
         if (player.isPresent()) {
-            System.out.println(String.format("Player id %d is %s", id, player.isPresent()));
             return player.get();
         } else {
             throw new PlayerNotFoundException(id);
