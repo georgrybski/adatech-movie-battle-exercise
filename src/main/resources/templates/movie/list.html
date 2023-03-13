@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page-title.movie-list}"></title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th th:text="#{movie.title}" />
+                <th th:text="#{movie.genre}" />
+                <th th:text="#{movie.ratings}" />
+                <th th:text="#{action.edit}" />
+                <th th:text="#{action.delete}" />
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movie.title}" />
+                <td th:text="${movie.genre}" />
+                <td th:text="${movie.ratings}" />
+                <td><a th:href="@{'/app/movies/edit/' + ${movie.id}}" th:text="#{action.edit}" /></td>
+                <td><a th:href="@{'/app/movies/delete/' + ${movie.id}}" th:text="#{action.delete}"/></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/app/movies/create" th:text="#{action.new}" />
+</body>
+</html>
