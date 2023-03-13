@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page-title.create-player}"></title>
+</head>
+<body>
+  <form action="#" th:action="@{/app/players}" th:object="${player}" method="post">
+      <label th:text="#{player.name}"></label>
+      <input type="text" th:field="*{name}"/>
+      <label th:text="#{player.score}"></label>
+      <input type="number" th:field="*{score}"/>
+      <input type="hidden" th:field="*{id}"/>
+      <input type="submit" th:value="#{action.save}"/>
+  </form>
+</body>
+</html>
