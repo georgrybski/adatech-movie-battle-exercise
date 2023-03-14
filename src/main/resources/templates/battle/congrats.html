@@ -8,9 +8,13 @@
 <div th:align="center">
     <img th:src="@{/battles/congrats.jpeg}" width="400" height="">
     <br><br>
-    <a th:href="@{'/app/battles/player/' + ${player.getId()} + '/play-again'}" th:text="#{action.play-again}"/>
-    <br><br>
+    <form action="#" th:action="@{/app/battles}" th:object="${player}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="submit" th:value="#{action.try-again}"/>
+    </form>
+    <br>
     <a th:href="@{/app/battles/create}" th:text="#{action.leave}"/>
+    <br><br>
 </div>
 </body>
 </html>

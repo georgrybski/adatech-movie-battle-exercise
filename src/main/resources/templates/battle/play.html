@@ -34,6 +34,7 @@
       VS
       <img class="movie-image" th:id="${battle.right.id}" th:src="@{${battle.right.image}}" onclick="select(this)" width="100" height="180" /><br />
       <input id="movie-selected" type="hidden" th:field="*{id}">
+      <br><br>
       <input type="submit" th:value="#{action.vote}">
     </form>
   </div>

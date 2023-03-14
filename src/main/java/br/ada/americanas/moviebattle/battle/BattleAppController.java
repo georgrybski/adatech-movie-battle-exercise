@@ -39,6 +39,7 @@ public class BattleAppController {
             @ModelAttribute Player player,
             Model model
     ) {
+        player = playerService.findByIdOrThrow(player.getId());
         Battle battle = battleService.create(player);
         model.addAttribute("battle", battle);
         model.addAttribute("selected_movie", new Movie());
@@ -57,17 +58,4 @@ public class BattleAppController {
         boolean hit = battle.getHit();
         return hit ? "battle/congrats" : "battle/wasted";
     }
-
-    @GetMapping("/player/{id}/play-again")
-    public String playAgain(
-            @PathVariable("id") Long id,
-            Model model
-    ) {
-        Player player = playerService.findByIdOrThrow(id);
-            Battle battle = battleService.create(player);
-            model.addAttribute("battle", battle);
-            model.addAttribute("selected_movie", new Movie());
-        return "battle/play";
-    }
-
 }
